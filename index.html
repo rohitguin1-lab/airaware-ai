@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#102a2a" />
+  <title>AirAware AI — Breathe smarter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">✳</span><span>airaware<span class="brand-ai">.ai</span></span></a>
+    <div class="top-right"><span class="live-dot"></span><span>LIVE AIR QUALITY</span><span class="top-date" id="today"></span></div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">YOUR FAMILY'S EVERYDAY AIR COMPANION</div>
+        <h1>Breathe smarter.<br><em>Live better.</em></h1>
+        <p>Understand the air around you and turn pollution data into practical, family-friendly decisions.</p>
+        <div class="location-control">
+          <span>⌖</span><input id="cityInput" value="Hyderabad" aria-label="City" placeholder="Enter a city" />
+          <button id="searchBtn">Check air <span>→</span></button>
+        </div>
+        <div class="fineprint">Live data from Open-Meteo · No account required</div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="sun"></div><div class="orb orb-one"></div><div class="orb orb-two"></div>
+        <div class="hill hill-back"></div><div class="hill hill-front"></div>
+        <div class="art-label"><span class="live-dot"></span> AIR, MADE UNDERSTANDABLE</div>
+      </div>
+    </section>
+
+    <section class="section-heading">
+      <div><div class="eyebrow">AT A GLANCE</div><h2>Your air snapshot</h2></div>
+      <div class="updated" id="updated">Fetching latest readings…</div>
+    </section>
+
+    <section class="dashboard">
+      <article class="aqi-card">
+        <div class="card-top"><span>EUROPEAN AQI</span><span class="pill" id="statusPill">LOADING</span></div>
+        <div class="aqi-main"><div class="aqi-number" id="aqi">--</div><div><div class="aqi-status" id="aqiStatus">Checking air</div><div class="aqi-location" id="locationName">Hyderabad, India</div></div></div>
+        <div class="meter"><div class="meter-fill" id="meterFill"></div></div>
+        <div class="meter-labels"><span>Good</span><span>Moderate</span><span>Poor</span><span>Very poor</span></div>
+        <div class="aqi-advice" id="aqiAdvice">Your personalised air guidance will appear here.</div>
+      </article>
+      <article class="metric-card"><div class="metric-icon">◌</div><div class="metric-label">PM2.5</div><div class="metric-value"><span id="pm25">--</span><small> µg/m³</small></div><div class="metric-note">Fine particles</div></article>
+      <article class="metric-card"><div class="metric-icon">◍</div><div class="metric-label">PM10</div><div class="metric-value"><span id="pm10">--</span><small> µg/m³</small></div><div class="metric-note">Coarse particles</div></article>
+      <article class="metric-card"><div class="metric-icon">↗</div><div class="metric-label">Nitrogen dioxide</div><div class="metric-value"><span id="no2">--</span><small> µg/m³</small></div><div class="metric-note">Traffic-related pollutant</div></article>
+    </section>
+
+    <section class="two-col">
+      <article class="panel routine-panel">
+        <div class="panel-head"><div><div class="eyebrow">MADE FOR YOUR HOUSEHOLD</div><h2>Today's low-exposure plan</h2></div><span class="spark">✦ AI</span></div>
+        <div class="profile-row">
+          <label>Who are you planning for?</label>
+          <select id="profile"><option value="family">Family with children</option><option value="adult">Healthy adult</option><option value="senior">Older adult</option><option value="sensitive">Someone with asthma or respiratory sensitivity</option></select>
+        </div>
+        <div class="profile-row">
+          <label>Today's priority</label>
+          <select id="priority"><option value="school and commute">School and commute</option><option value="work and errands">Work and errands</option><option value="exercise">Exercise and outdoor time</option><option value="indoor comfort">Indoor comfort</option></select>
+        </div>
+        <button class="primary wide" id="planBtn">Generate my daily plan <span>✦</span></button>
+        <div class="plan-output" id="planOutput"><div class="empty-icon">✧</div><p>Your practical daily plan will appear here, based on the latest air reading and your household profile.</p></div>
+        <div class="disclaimer">General guidance only. Follow local health advisories and your clinician's advice.</div>
+      </article>
+
+      <article class="panel chat-panel">
+        <div class="panel-head"><div><div class="eyebrow">ASK AIRaware</div><h2>Your air quality assistant</h2></div><span class="chat-icon">✳</span></div>
+        <div class="chat-intro">Ask a question about today's air, indoor ventilation, masks or family routines.</div>
+        <div class="chat-messages" id="chatMessages"><div class="bot-bubble">Hi! I'm AirAware. I can help you make sense of today's air quality. What would you like to know?</div></div>
+        <div class="suggestions"><button class="suggestion">Can my child play outside?</button><button class="suggestion">How should I ventilate my home?</button></div>
+        <form id="chatForm" class="chat-form"><input id="chatInput" placeholder="Ask me anything about the air…" autocomplete="off" /><button aria-label="Send message">↑</button></form>
+        <div class="chat-foot">AI responses can be imperfect. Verify urgent health decisions with a professional.</div>
+      </article>
+    </section>
+
+    <section class="tips-section">
+      <div class="section-heading"><div><div class="eyebrow">SMALL CHANGES, CLEANER AIR</div><h2>Indoor air, improved</h2></div><span class="tip-count">4 practical habits</span></div>
+      <div class="tips-grid">
+        <article class="tip"><div class="tip-symbol">⌂</div><h3>Time your ventilation</h3><p>Ventilate when outdoor air is cleaner. Keep windows closed during nearby smoke, heavy traffic or a pollution spike.</p></article>
+        <article class="tip"><div class="tip-symbol">✧</div><h3>Filter the air</h3><p>Consider a correctly sized HEPA air cleaner in the room where your family spends the most time.</p></article>
+        <article class="tip"><div class="tip-symbol">⌁</div><h3>Keep particles down</h3><p>Wet-mop and damp-dust. Avoid incense, candles, smoking and high-emission cooking where possible.</p></article>
+        <article class="tip"><div class="tip-symbol">♧</div><h3>Make a clean-air room</h3><p>Choose one room, reduce indoor sources and run filtration consistently when outdoor air is poor.</p></article>
+      </div>
+    </section>
+    <footer><a class="brand" href="#"><span class="brand-mark">✳</span><span>airaware<span class="brand-ai">.ai</span></span></a><span>Built to make air quality easier to act on.</span><span>Data: Open-Meteo · Educational use</span></footer>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
